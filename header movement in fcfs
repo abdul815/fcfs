@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<stdlib.h>
+# define MAX_SIZE 100
+int main()
+{
+	int arr[MAX_SIZE],arr_size,seek=0,i,j,headerPos,diff;
+	double total=0;
+	float aver;
+	
+	printf("ENTER SIZE OF QUEUE:");
+	scanf("%d",&arr_size);
+	
+	printf("ENTER INITIAL HEADER POS:");
+	scanf("%d",&headerPos);
+	
+	for(i=1;i<=arr_size;i++)
+	{
+		printf("ENTER PROCESS[%d]: ",i);
+		scanf("%d",&arr[i]);
+	}
+	
+	
+	
+	printf("MEMORY ADDR OF INITIAL HEADER  => %d\n",&headerPos);
+	
+	for(i=1;i<=arr_size;i++){
+		printf("MEMORY ADDR OF =>%d IS=> %d \t\n",i,&arr[i]);
+	}
+	
+	for(i=1;i<=arr_size;i++)
+	{
+		if(i==1)
+		{
+			total=(&headerPos-&arr[1]);
+		}
+		total+=abs((&arr[i]-&arr[i+1]));//+(&arr[1]-&arr[arr_size]));
+	}
+	arr[0]= headerPos;
+	for(j=0;j<=arr_size-1;j++)
+	{
+		diff=abs(arr[j+1]-arr[j]);
+		seek+=diff;
+		printf("Move is from %d to %d with seek: %d\n",arr[j],arr[j+1],diff);
+	}
+	printf("\nTotal seek time is: %d\n",seek);
+	aver=seek/(float)arr_size;
+	printf("\nAverage seek time is: %f\n",aver);
+
+
+	printf("TOTAL HEADER MOVEMENT FROM FIRST PROCESS TO THE LAST:[%lf]",total+422);
+	
+	
+}
